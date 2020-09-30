@@ -1,6 +1,8 @@
 from accounts.models import CustomUser
 from django.db import models
 
+from django.urls import reverse
+
 
 class Diary(models.Model):
     """日記モデル"""
@@ -19,3 +21,6 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('diary:diary_detail', kwargs={'pk': self.pk})
